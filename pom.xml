@@ -12,6 +12,7 @@
 		<module>shop-service</module>
 		<module>shop-sys</module>
 		<module>shop-quartz</module>
+		<module>shop-admin</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
