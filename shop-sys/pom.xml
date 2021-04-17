@@ -10,6 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>shop-sys</artifactId>
-
+    <dependencies>
+        <dependency>
+            <groupId>yznu.cn.yzh</groupId>
+            <artifactId>shop-security</artifactId>
+            <version>${shop.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

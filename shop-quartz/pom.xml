@@ -7,9 +7,26 @@
         <groupId>yznu.cn.yzh</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>shop-quartz</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>yznu.cn.yzh</groupId>
+            <artifactId>shop-service</artifactId>
+            <version>${shop.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>yznu.cn.yzh</groupId>
+            <artifactId>shop-security</artifactId>
+            <version>${shop.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

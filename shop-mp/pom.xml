@@ -11,5 +11,12 @@
 
     <artifactId>shop-mp</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>yznu.cn.yzh</groupId>
+            <artifactId>shop-security</artifactId>
+            <version>${shop.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

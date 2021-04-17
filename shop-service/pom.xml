@@ -11,5 +11,18 @@
 
     <artifactId>shop-service</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>yznu.cn.yzh</groupId>
+            <artifactId>shop-bean</artifactId>
+            <version>${shop.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>yznu.cn.yzh</groupId>
+            <artifactId>shop-common</artifactId>
+            <version>${shop.version}</version>
+        </dependency>
+    </dependencies>
+
 
 </project>
