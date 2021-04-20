@@ -1,18 +1,40 @@
 // pages/express-delivery/express-delivery.js
+
+var http = require('../../utils/http.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    companyName: "",
+    dvyFlowId: "",
+    dvyData: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var ths = this;
+    wx.showLoading();
+    var params = {
+      url: "/delivery/check",
+      method: "GET",
+      data: {
+        orderNumber: options.orderNum
+      },
+      callBack: function (res) {
+        //console.log(res);
+        ths.setData({
+          companyName: res.companyName,
+          dvyFlowId: res.dvyFlowId,
+          dvyData: res.data
+        });
+        wx.hideLoading();
+      }
+    };
+    http.request(params);
   },
 
   /**

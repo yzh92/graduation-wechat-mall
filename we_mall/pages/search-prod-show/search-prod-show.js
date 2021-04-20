@@ -1,18 +1,37 @@
 // pages/search-prod-show/search-prod-show.js
+
+var http = require('../../utils/http.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    sts: 0,
+    showType:2,
+    searchProdList:[],
+    prodName:"",
   },
 
+  changeShowType:function(){
+    var showType = this.data.showType;
+    if (showType==1){
+      showType=2;
+    }else{
+      showType = 1;
+    }
+    this.setData({
+      showType: showType
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      prodName: options.prodName
+    });
+    
   },
 
   /**
@@ -22,11 +41,45 @@ Page({
 
   },
 
+  //输入商品获取数据
+  getSearchContent: function (e) {
+    this.setData({
+      prodName: e.detail.value
+    });
+  },
+
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.toLoadData();
+  },
 
+//请求商品接口
+  toLoadData:function(){
+    var ths = this;
+    //热门搜索
+    var params = {
+      url: "/search/searchProdPage",
+      method: "GET",
+      data: {
+        current: 1,
+        prodName: this.data.prodName,
+        size: 10,
+        sort: this.data.sts
+      },
+      callBack: function (res) {
+        ths.setData({
+          searchProdList: res.records,
+        });
+      },
+    };
+    http.request(params);
+  },
+
+//当前搜索页二次搜索商品
+  toSearchConfirm:function(){
+    this.toLoadData();
   },
 
   /**
@@ -62,5 +115,23 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+    /**
+   * 状态点击事件
+   */
+  onStsTap: function(e) {
+    var sts = e.currentTarget.dataset.sts;
+    this.setData({
+      sts: sts
+    });
+    this.toLoadData();
+  },
+
+  toProdPage: function (e) {
+    var prodid = e.currentTarget.dataset.prodid;
+    wx.navigateTo({
+      url: '/pages/prod/prod?prodid=' + prodid,
+    })
+  },
 })

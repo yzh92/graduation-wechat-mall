@@ -1,24 +1,25 @@
 //app.js
+var http = require("utils/http.js");
 App({
-  //onLaunch,onShow: options(path,query,scene,shareTicket,referrerInfo(appId,extraData))
-  onLaunch: function(options) {
-    
-  },
-  onShow: function(options) {
-
-  },
-  onHide: function() {
-
-  },
-  onError: function(msg) {
-
-  },
-  //options(path,query,isEntryPage)
-  onPageNotFound: function(options) {
-
+  onLaunch: function () {
+    http.getToken();
+    wx.getSetting({
+      success(res) {
+        console.log(res);
+        if (!res.authSetting['scope.userInfo']) {
+          wx.navigateTo({
+            url: '/pages/login/login',
+          })
+        }
+      }
+    })
   },
   globalData: {
-    
+    // 定义全局请求队列
+    requestQueue: [],
+    // 是否正在进行登陆
+    isLanding: true,
+    // 购物车商品数量
+    totalCartCount: 0
   }
-});
-  
+})

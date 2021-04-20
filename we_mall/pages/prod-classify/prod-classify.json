@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "prod": "/components/production/production"
+  },
+  "onReachBottomDistance": 0
 }

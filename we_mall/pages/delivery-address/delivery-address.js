@@ -1,66 +1,98 @@
 // pages/delivery-address/delivery-address.js
+
+var http = require("../../utils/http.js");
+// var config = require("../../utils/config.js");
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    defaultSize: 'mini',
+    disabled: false,
+    plain: true,
+    loading: false,
+    addressList: [],
+    addAddress: '',
+    order: -1
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  onLoad: function (option) {
+    if (option.order) {
+      this.setData({
+        order: option.order
+      });
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  //新增收货地址
+  onAddAddr: function (e) {
+    wx.navigateTo({
+      url: '/pages/editAddress/editAddress',
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
+  //设置为默认地址
+  onDefaultAddr: function (e) {
+    var addrId = e.currentTarget.dataset.addrid;
+    console.log(addrId)
+    var ths = this;
+    wx.showLoading();
+    var params = {
+      url: "/p/address/defaultAddr/" + addrId,
+      method: "PUT",
+      data: {
+        addrId:addrId
+         },
+      callBack: function (res) {
+        wx.hideLoading();
+
+      }
+    }
+    http.request(params);
+  },
+
+  //加载地址列表
   onShow: function () {
+    var ths = this;
+    wx.showLoading();
 
+
+      var params = {
+        url: "/p/address/list",
+        method: "GET",
+        data: {},
+        callBack: function (res) {
+          //console.log(res)
+          ths.setData({
+            addressList: res
+          });
+          wx.hideLoading();
+        }
+      }
+    
+    http.request(params);
+  },
+
+// 修改地址 
+  toEditAddress: function (e) {
+    var addrId = e.currentTarget.dataset.addrid;
+    wx.navigateTo({
+      url: '/pages/editAddress/editAddress?addrId=' + addrId,
+    })
   },
 
   /**
-   * 生命周期函数--监听页面隐藏
+   * 选择地址 跳转回提交订单页
    */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  selAddrToOrder: function (e) {
+    if (this.data.order == 0) {
+      var pages = getCurrentPages();//当前页面
+      var prevPage = pages[pages.length - 2];//上一页面
+      prevPage.setData({//直接给上移页面赋值
+        item: e.currentTarget.dataset.item,
+        selAddress: 'yes'
+      });
+      wx.navigateBack({//返回
+        delta: 1
+      })
+    }
   }
 })

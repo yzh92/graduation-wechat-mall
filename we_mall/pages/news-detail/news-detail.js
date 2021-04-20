@@ -1,18 +1,46 @@
 // pages/news-detail/news-detail.js
+var http = require("../../utils/http.js");
+var config = require("../../utils/config.js");
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    news: {
+      title: '',
+      content: '',
+      id: null
+    }
   },
+
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // var ths = this;
+    //加载公告详情
+    
+    var params = {
+      // `/shop/notice/info/${options.id}`
+      url: '/shop/notice/info/' + options.id,
+      method: "GET",
+      // data: {
+      //   id: id,
+      // },
+      // callBack: function(news){
+      callBack: res => {
+        res.content = res.content.replace(/width=/gi, 'sss=');
+        res.content = res.content.replace(/height=/gi, 'sss=');
+        res.content = res.content.replace(/ \/\>/gi, ' style="max-width:100% !important;display:block;" \/\>');
+        this.setData({
+          news: res
+        });
+      }
+    };
+    http.request(params);
   },
 
   /**
@@ -26,7 +54,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**
