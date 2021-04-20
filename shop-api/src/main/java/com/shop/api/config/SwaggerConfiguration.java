@@ -23,7 +23,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * Swagger文档，只有在测试环境才会使用
- * @author LGH
+ * @author yzh
  */
 //@Profile("dev")
 @Configuration
@@ -46,7 +46,9 @@ public class SwaggerConfiguration {
 	     return new ApiInfoBuilder()
 	     .title("we-mall商城接口文档")
 	     .description("we-mall商城接口文档Swagger版")
-	     .version("1.0")
+	     .contact(new Contact("袁志豪","", ""))
+		.version("1.0")
 	     .build();
+
 	 }
 }

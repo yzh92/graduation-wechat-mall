@@ -26,18 +26,15 @@ import java.util.UUID;
  * Persistence is delegated to a {@code TokenStore} implementation and customization of the access token to a
  * {@link TokenEnhancer}.
  *
- * @author Ryan Heaton
- * @author Luke Taylor
- * @author Dave Syer
- * @author LGH
+ * @author yzh
  */
 public class ShopTokenServices implements AuthorizationServerTokenServices, ResourceServerTokenServices,
         ConsumerTokenServices, InitializingBean {
 
-    // default 30 days.
+    // 默认三十天
     private int refreshTokenValiditySeconds = 60 * 60 * 24 * 30;
 
-    // default 12 hours.
+    // 默认十二个小时
     private int accessTokenValiditySeconds = 60 * 60 * 12;
 
     private boolean supportRefreshToken = false;
@@ -64,26 +61,8 @@ public class ShopTokenServices implements AuthorizationServerTokenServices, Reso
     @Override
     public OAuth2AccessToken createAccessToken(OAuth2Authentication authentication) {
 
-//        OAuth2AccessToken existingAccessToken = tokenStore.getAccessToken(authentication);
         OAuth2RefreshToken refreshToken = null;
-        // 如果有token，直接删除，更新token，避免出现缓存问题
-//        if (existingAccessToken != null) {
-//            if (existingAccessToken.getRefreshToken() != null) {
-//                refreshToken = existingAccessToken.getRefreshToken();
-//                // The token store could remove the refresh token when the
-//                // access token is removed, but we want to
-//                // be sure...
-//                tokenStore.removeRefreshToken(refreshToken);
-//            }
-//            tokenStore.removeAccessToken(existingAccessToken);
-//
-//        }
 
-        // Only create a new refresh token if there wasn't an existing one
-        // associated with an expired access token.
-        // Clients might be holding existing refresh tokens, so we re-use it in
-        // the case that the old access token
-        // expired.
         if (refreshToken == null) {
             refreshToken = createRefreshToken(authentication);
         }
@@ -107,6 +86,13 @@ public class ShopTokenServices implements AuthorizationServerTokenServices, Reso
 
     }
 
+    /**
+     * 通过事务 刷新token
+     * @param refreshTokenValue
+     * @param tokenRequest
+     * @return
+     * @throws AuthenticationException
+     */
     @Override
     @Transactional(noRollbackFor={InvalidTokenException.class, InvalidGrantException.class}, rollbackFor = Exception.class)
     public OAuth2AccessToken refreshAccessToken(String refreshTokenValue, TokenRequest tokenRequest)
@@ -166,12 +152,12 @@ public class ShopTokenServices implements AuthorizationServerTokenServices, Reso
     }
 
     /**
-     * Create a refreshed authentication.
+     * 创建一个刷新的身份验证
      *
-     * @param authentication The authentication.
-     * @param request The scope for the refreshed token.
-     * @return The refreshed authentication.
-     * @throws InvalidScopeException If the scope requested is invalid or wider than the original scope.
+     * @param authentication 身份验证.
+     * @param request 刷新的令牌的范围。
+     * @return 刷新的身份验证
+     * @throws InvalidScopeException 如果请求的范围是无效的或超过原来的范围.
      */
     private OAuth2Authentication createRefreshedAuthentication(OAuth2Authentication authentication, TokenRequest request) {
         OAuth2Authentication narrowed = authentication;

@@ -2,6 +2,7 @@ package com.shop.security.exception;
 
 /**
  * 密码不正确
+ * @author yzh
  */
 public class WxErrorException extends ShopAuth2Exception{
     public WxErrorException(String msg) {

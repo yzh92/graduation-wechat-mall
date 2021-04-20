@@ -44,6 +44,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setNickName(uParam.getUserMail());
         user.setUserMail(uParam.getUserMail());
         user.setLoginPassword(uParam.getPassword());
+        //新增一个用户
         return userMapper.insert(user) == 1;
     }
 }

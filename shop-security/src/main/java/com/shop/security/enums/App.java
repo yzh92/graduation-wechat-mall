@@ -1,5 +1,10 @@
 package com.shop.security.enums;
 
+/**
+ * App 枚举类
+ * @author yzh
+ */
+
 public enum App {
     /**
      * 小程序

@@ -6,11 +6,20 @@ import com.shop.bean.param.UserRegisterParam;
 
 /**
  *
- * @author lgh on 2018/09/11.
+ * @author yzh
  */
 public interface UserService extends IService<User> {
-
+    /**
+     * 根据用户id查询用户
+     * @param userId
+     * @return
+     */
     User getUserByUserId(String userId);
 
+    /**
+     * 新增一个用户
+     * @param userRegisterParam
+     * @return
+     */
     Boolean insertUser(UserRegisterParam userRegisterParam);
 }

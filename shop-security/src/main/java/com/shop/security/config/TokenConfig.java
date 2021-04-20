@@ -38,7 +38,7 @@ public class TokenConfig {
     @Bean
     public TokenStore tokenStore() {
         RedisTokenStore tokenStore = new RedisTokenStore(redisConnectionFactory);
-        tokenStore.setPrefix(SecurityConstants.YAMI_OAUTH_PREFIX);
+        tokenStore.setPrefix(SecurityConstants.SHOP_OAUTH_PREFIX);
         return tokenStore;
     }
 

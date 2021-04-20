@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 /**
- * @author LGH
+ * @author yzh
  */
 @Configuration
 @Order(90)

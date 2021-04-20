@@ -16,7 +16,7 @@ import java.util.concurrent.locks.Lock;
  *
  * 已加入分布式锁的实现
  *
- * @author LGH
+ * @author yzh
  */
 @Component
 public class WxMaInRedisConfig extends WxMaDefaultConfigImpl {

@@ -26,6 +26,7 @@ import java.io.PrintWriter;
 /**
  * 登录成功，返回oauth token
  *
+ * @author yzh
  */
 @Component
 @Slf4j

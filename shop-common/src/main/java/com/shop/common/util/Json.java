@@ -13,6 +13,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author yzh
+ */
 public class Json {
 
     private static ObjectMapper objectMapper = new ObjectMapper();

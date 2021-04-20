@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 /**
  * 用户详细信息
  *
- * @author
+ * @author yzh
  */
 public interface ShopUserDetailsService extends UserDetailsService {
 

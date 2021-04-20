@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * WxMaServiceImpl 在集群模式获取accessToken的方式
- * @author LGH
+ * @author yzh
  */
 @Slf4j
 public class WxMaServiceClusterImpl extends WxMaServiceImpl {

@@ -10,8 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 /**
- * 自定义AbstractAuthenticationToken，
- * @author SJL
+ * 自定义 AbstractAuthenticationToken，
+ * @author yzh
  */
 @Getter
 @Setter

@@ -35,9 +35,9 @@ import java.util.Date;
 public class ShopUserServiceImpl implements ShopUserDetailsService {
 
 	private final UserMapper userMapper;
-
+	//第三方系统连接信息
 	private final AppConnectMapper appConnectMapper;
-
+	//密码加解密
 	private final PasswordEncoder passwordEncoder;
 	@Override
 	@SneakyThrows

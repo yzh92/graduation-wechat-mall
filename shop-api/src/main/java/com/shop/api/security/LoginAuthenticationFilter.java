@@ -92,7 +92,11 @@ public class LoginAuthenticationFilter extends AbstractAuthenticationProcessingF
         return result;
     }
 
-
+    /**
+     * 从请求流中获取字符串
+     * @param req
+     * @return
+     */
     private String getStringFromStream(HttpServletRequest req) {
         ServletInputStream is;
         try {

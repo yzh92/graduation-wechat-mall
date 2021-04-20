@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * 二维码Token
+ * @author yzh
  */
 @NoArgsConstructor
 public class MpAuthenticationToken extends MyAuthenticationToken {
