@@ -1,5 +1,5 @@
 
-package com.shop.api.security;
+package com.shop.api.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.fasterxml.jackson.annotation.JsonView;

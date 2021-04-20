@@ -9,6 +9,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+/**
+ * @author yzh
+ */
 @Data
 @TableName("tz_transfee_free")
 public class TransfeeFree implements Serializable {

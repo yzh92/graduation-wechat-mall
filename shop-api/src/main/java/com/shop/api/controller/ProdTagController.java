@@ -1,4 +1,4 @@
-package com.shop.api.security;
+package com.shop.api.controller;
 
 import com.shop.bean.app.dto.ProdTagDto;
 import com.shop.bean.model.ProdTag;
