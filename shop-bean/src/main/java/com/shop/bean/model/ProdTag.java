@@ -8,9 +8,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 商品分组标签
- *
  * @author yzh
+ * Date:2021/4/21
  */
 @Data
 @TableName("tz_prod_tag")

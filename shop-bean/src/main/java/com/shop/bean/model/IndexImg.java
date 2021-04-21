@@ -11,7 +11,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- *轮播图实体类
  * @author yzh
  */
 @Data

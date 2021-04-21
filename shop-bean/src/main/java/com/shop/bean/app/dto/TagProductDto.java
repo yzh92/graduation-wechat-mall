@@ -1,6 +1,5 @@
 package com.shop.bean.app.dto;
 
-import com.shop.bean.model.ProdTag;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 

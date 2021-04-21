@@ -1,6 +1,6 @@
 // pages/basket/basket.js
 var http = require("../../utils/http.js");
-// var config = require("../../utils/config.js");
+var config = require("../../utils/config.js");
 const Big = require("../../utils/big.min.js");
 
 Page({
@@ -18,20 +18,6 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
@@ -44,6 +30,7 @@ Page({
       callBack: res => {
         if (res.length > 0) {
           // 默认全选
+          console.log(res);
           var shopCartItemDiscounts = res[0].shopCartItemDiscounts;
           shopCartItemDiscounts.forEach(shopCartItemDiscount => {
             shopCartItemDiscount.shopCartItems.forEach(shopCartItem => {

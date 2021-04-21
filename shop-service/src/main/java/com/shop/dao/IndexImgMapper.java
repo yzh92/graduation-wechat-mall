@@ -3,7 +3,6 @@ package com.shop.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.shop.bean.model.IndexImg;
 import org.apache.ibatis.annotations.Param;
-import org.jsoup.Connection;
 
 import java.util.List;
 

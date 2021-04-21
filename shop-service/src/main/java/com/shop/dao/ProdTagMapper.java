@@ -7,8 +7,7 @@ import com.shop.bean.model.ProdTag;
 /**
  * 商品分组
  *
- * @author hzm
- * @date 2019-04-18 09:08:36
+ * @author yzh
  */
 public interface ProdTagMapper extends BaseMapper<ProdTag> {
 

@@ -1,6 +1,5 @@
 package com.shop.bean.app.dto;
 
-import com.shop.common.serializer.json.ImgJsonSerializer;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

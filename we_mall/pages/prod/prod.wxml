@@ -1,7 +1,7 @@
 <!-- 商品详情 -->
 <view class="container">
   <!-- 轮播图 -->
-  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" indicator-color="{{indicatorColor}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="{{indicatorActiveColor}}">
+  <swiper circular="{{true}}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" indicator-color="{{indicatorColor}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="{{indicatorActiveColor}}">
     <block wx:for="{{imgs}}" wx:key='*this'>
       <swiper-item>
         <image src='{{item}}'></image>
