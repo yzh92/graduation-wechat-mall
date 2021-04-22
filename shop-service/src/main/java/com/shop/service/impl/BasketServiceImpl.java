@@ -147,8 +147,8 @@ public class BasketServiceImpl extends ServiceImpl<BasketMapper, Basket> impleme
             applicationContext.publishEvent(new ShopCartEvent(shopCart, shopCartItemDtoList));
 
             shopCartDtos.add(shopCart);
-        }
 
+        }
         return shopCartDtos;
     }
 

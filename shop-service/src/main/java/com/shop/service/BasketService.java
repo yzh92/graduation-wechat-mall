@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author lgh on 2018/10/18.
+ * @author yzh
  */
 public interface BasketService extends IService<Basket> {
 
@@ -49,7 +49,7 @@ public interface BasketService extends IService<Basket> {
 
     /**
      * 组装获取用户提交的购物车商品项
-     * @param orderItems 提交订单时携带的商品信息
+     * @param orderItem 提交订单时携带的商品信息
      * @param userId 当前用户的用户id
      * @return 所有的商品购物项
      */
