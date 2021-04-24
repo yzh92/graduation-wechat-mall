@@ -167,7 +167,7 @@ Page({
       mask: true
     });
     var params = {
-      url: "/p/order/pay",
+      url: "/p/order/normalPay",
       method: "POST",
       data: {
         payType: 1,
