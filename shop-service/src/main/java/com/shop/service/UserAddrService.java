@@ -3,6 +3,9 @@ package com.shop.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.shop.bean.model.UserAddr;
 
+/**
+ * @author yzh
+ */
 public interface UserAddrService extends IService<UserAddr> {
 
 	UserAddr getDefaultUserAddr(String userId);

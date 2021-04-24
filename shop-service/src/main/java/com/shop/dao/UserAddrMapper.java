@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.shop.bean.model.UserAddr;
 import org.apache.ibatis.annotations.Param;
 
+/**
+ * @author yzh
+ */
 public interface UserAddrMapper extends BaseMapper<UserAddr> {
 
 	UserAddr getDefaultUserAddr(@Param("userId") String userId);
