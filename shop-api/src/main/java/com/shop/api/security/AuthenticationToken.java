@@ -15,8 +15,7 @@ import java.util.Collection;
  */
 @Getter
 @Setter
-public class AuthenticationToken implements Authentication,
-        CredentialsContainer {
+public class AuthenticationToken implements Authentication,CredentialsContainer {
 
     private Collection<GrantedAuthority> authorities;
     private UserDetails details;

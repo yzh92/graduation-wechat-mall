@@ -51,15 +51,17 @@ public class LoginAuthenticationFilter extends AbstractAuthenticationProcessingF
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+        //判断请求方式，需要post请求，如果不是给出提示
         if (!ServletUtil.METHOD_POST.equals(request.getMethod())) {
             throw new AuthenticationServiceException(
                     "Authentication method not supported: " + request.getMethod());
         }
         String requestBody = getStringFromStream(request);
-
+        //判断请求体是否为空
         if (StrUtil.isBlank(requestBody)) {
             throw new AuthenticationServiceException("无法获取输入信息");
         }
+        //
         MiniAppAuthenticationToken authentication  =  Json.parseObject(requestBody, MiniAppAuthenticationToken.class);
         String code = String.valueOf(authentication.getPrincipal());
         ShopUser loadedUser = null;
@@ -79,14 +81,16 @@ public class LoginAuthenticationFilter extends AbstractAuthenticationProcessingF
             if (session == null) {
                 throw new WxErrorExceptionBase("无法获取用户登陆信息");
             }
+            //存储用户连接信息
             appConnect.setBizUserId(session.getOpenid());
             appConnect.setBizUnionid(session.getUnionid());
             shopUserDetailsService.insertUserIfNecessary(appConnect);
         }
-
+        //
         if (loadedUser == null) {
             loadedUser = shopUserDetailsService.loadUserByAppIdAndBizUserId(App.MINI, appConnect.getBizUserId());
         }
+
         MiniAppAuthenticationToken result = new MiniAppAuthenticationToken(loadedUser, authentication.getCredentials());
         result.setDetails(authentication.getDetails());
         return result;

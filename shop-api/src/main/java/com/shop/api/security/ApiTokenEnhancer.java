@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * token 增强 加入另外的返回值
+ * token 增强 加入另外的返回值（返回token的同时将 userid，nickName，pic，enabled一并返回）
  * @author yzh
  */
 @Component

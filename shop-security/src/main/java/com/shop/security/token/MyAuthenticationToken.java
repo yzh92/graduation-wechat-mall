@@ -24,9 +24,9 @@ public class MyAuthenticationToken extends AbstractAuthenticationToken {
         super(null);
     }
     /**
-     * This constructor should only be used by <code>AuthenticationManager</code> or <code>AuthenticationProvider</code>
-     * implementations that are satisfied with producing a trusted (i.e. {@link #isAuthenticated()} = <code>true</code>)
-     * token token.
+     *此构造函数只能被AuthenticationManager或AuthenticationProvider使用
+     *满足于产生一个受信任的实现(例如{@link #isAuthenticated()} = true)
+     *令牌
      *
      * @param principal
      * @param credentials
