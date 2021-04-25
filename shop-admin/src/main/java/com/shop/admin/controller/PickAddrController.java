@@ -1,0 +1,90 @@
+package com.shop.admin.controller;
+
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.shop.bean.model.PickAddr;
+import com.shop.common.enums.ShopHttpStatus;
+import com.shop.common.exception.ShopBindException;
+import com.shop.common.util.PageParam;
+import com.shop.security.util.SecurityUtils;
+import com.shop.service.PickAddrService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.Arrays;
+import java.util.Objects;
+
+
+/**
+ *
+ * @author yzh
+ */
+@RestController
+@RequestMapping("/shop/pickAddr")
+public class PickAddrController {
+
+    @Autowired
+    private PickAddrService pickAddrService;
+
+	/**
+	 * 分页获取
+	 */
+    @GetMapping("/page")
+	@PreAuthorize("@pms.hasPermission('shop:pickAddr:page')")
+	public ResponseEntity<IPage<PickAddr>> page(PickAddr pickAddr,PageParam<PickAddr> page){
+		IPage<PickAddr> pickAddrs = pickAddrService.page(page,new LambdaQueryWrapper<PickAddr>()
+													.like(StrUtil.isNotBlank(pickAddr.getAddrName()),PickAddr::getAddrName,pickAddr.getAddrName())
+													.orderByDesc(PickAddr::getAddrId));
+		return ResponseEntity.ok(pickAddrs);
+	}
+
+    /**
+	 * 获取信息
+	 */
+	@GetMapping("/info/{id}")
+	@PreAuthorize("@pms.hasPermission('shop:pickAddr:info')")
+	public ResponseEntity<PickAddr> info(@PathVariable("id") Long id){
+		PickAddr pickAddr = pickAddrService.getById(id);
+		return ResponseEntity.ok(pickAddr);
+	}
+
+	/**
+	 * 保存
+	 */
+	@PostMapping
+	@PreAuthorize("@pms.hasPermission('shop:pickAddr:save')")
+	public ResponseEntity<Void> save(@Valid @RequestBody PickAddr pickAddr){
+		pickAddr.setShopId(SecurityUtils.getSysUser().getShopId());
+		pickAddrService.save(pickAddr);
+		return ResponseEntity.ok().build();
+	}
+
+	/**
+	 * 修改
+	 */
+	@PutMapping
+	@PreAuthorize("@pms.hasPermission('shop:pickAddr:update')")
+	public ResponseEntity<Void> update(@Valid @RequestBody PickAddr pickAddr){
+		PickAddr dbPickAddr = pickAddrService.getById(pickAddr.getAddrId());
+
+		if (!Objects.equals(dbPickAddr.getShopId(),SecurityUtils.getSysUser().getShopId())) {
+			throw new ShopBindException(ShopHttpStatus.UNAUTHORIZED);
+		}
+		pickAddrService.updateById(pickAddr);
+		return ResponseEntity.ok().build();
+	}
+
+	/**
+	 * 删除
+	 */
+	@DeleteMapping
+	@PreAuthorize("@pms.hasPermission('shop:pickAddr:delete')")
+	public ResponseEntity<Void> delete(@RequestBody Long[] ids){
+		pickAddrService.removeByIds(Arrays.asList(ids));
+		return ResponseEntity.ok().build();
+	}
+}
