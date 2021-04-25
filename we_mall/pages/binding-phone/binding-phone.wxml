@@ -15,7 +15,6 @@
   </view>
 
   <view class='btn-box'>
-    <text class='sure-btn gray'>确定</text>
-    <text class='sure-btn '>确定</text>
+    <button type="primary" disabled="{{!isShow}}" >确定</button>
   </view>
 </view>
