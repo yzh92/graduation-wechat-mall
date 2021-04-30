@@ -7,7 +7,7 @@ import com.shop.bean.model.AttachFile;
 
 /**
  *
- * Created by lgh on 2018/07/27.
+ * @author yzh
  */
 public interface AttachFileService extends IService<AttachFile> {
 

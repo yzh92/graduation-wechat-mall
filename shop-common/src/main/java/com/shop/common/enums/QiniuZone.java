@@ -2,7 +2,7 @@ package com.shop.common.enums;
 
 /**
  * 七牛云zone的选择
- * @author LGH
+ * @author yzh
  */
 public enum QiniuZone {
 

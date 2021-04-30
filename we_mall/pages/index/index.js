@@ -48,7 +48,7 @@ Page({
   toCouponCenter: function() {
     wx.showToast({
       icon:"none",
-      title: '该功能未开源'
+      title: ''
     })
   },
 
